@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Pomodoro Timer</h1>
+        <div class="task-input">
+            <input type="text" id="taskInput" placeholder="What are you working on?" maxlength="50">
+        </div>
+        <p class="timer" id="timer">25:00</p>
+        <div class="session-info">
+            <span id="sessionCount">Sessions: 0</span>
+            <span id="butterflyCount">Butterflies: 0</span>
+            <span id="timerType">Work Time</span>
+        </div>
+        <canvas id="treeCanvas"></canvas>
+        <div class="buttonwrap">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+            <button id="skip">Skip 5 Min</button>
+            <button id="newSession" class="hidden">New Session</button>
+        </div>
+        <div class="settings">
+            <label class="toggle">
+                <input type="checkbox" id="autoBreak">
+                <span class="toggle-label">Auto-start breaks</span>
+            </label>
+            <label class="toggle">
+                <input type="checkbox" id="soundEnabled" checked>
+                <span class="toggle-label">Sound notifications</span>
+            </label>
+        </div>
+
+    </div>
+    <script src="index.js"></script>
+    
+</body>
+</html> 
