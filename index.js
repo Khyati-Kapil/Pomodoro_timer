@@ -150,12 +150,6 @@ function startTimer() {
         timeLeft--;
         updateTimer();
 
-        // Grow tree every 5 minutes
-        if (timeLeft % 300 === 0 && timeLeft > 0) {
-            treeHeight = Math.min(treeHeight + 15, maxTreeHeight);
-            drawTree();
-        }
-
         if (timeLeft === 0) {
             clearInterval(interval);
             interval = null;
@@ -165,14 +159,10 @@ function startTimer() {
                 
                 sessionCount++;
                 butterflyCount++;
-                sessionCountEl.textContent = `Sessions: ${sessionCount}`;
-                butterflyCountEl.textContent = `Butterflies: ${butterflyCount}`;
-                newSessionEl.classList.remove('hidden'); // Show new session button before animation
+                sessionCountEl = `Sessions: ${sessionCount}`;
+                butterflyCountEl. = `Butterflies: ${butterflyCount}`;
+                
                 animateButterfly();
-            }
-
-            if (soundEnabledEl.checked) {
-                notificationSound.play();
             }
 
            
@@ -267,8 +257,7 @@ function skipTime() {
         interval = null;
         growing = false;
         
-        if (wasWorkTime) { // Work session completed by skipping
-            // Increment counts and animate butterfly
+        if (wasWorkTime) { 
             sessionCount++;
             butterflyCount++;
             sessionCountEl.textContent = `Sessions: ${sessionCount}`;
