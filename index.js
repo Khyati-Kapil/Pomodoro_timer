@@ -29,8 +29,6 @@ function updateMaxTreeHeight() {
     maxTreeHeight = canvas.height * 0.7; 
     treeHeight = Math.min(treeHeight, maxTreeHeight);
 }
-let notificationSound = new Audio('data:audio/wav;base64,//uQRAAAAWMSLwUIYAAsYkXgoQwAEaYLWfkWgAI0wWs/ItAAAGDgYtAgAyN+QWaAAihwMWm4G8QQRDiMcCBcH3Cc+CDv/7xA4Tvh9Rz/y8QADBwMWgQAZG/ILNAARQ4GLTcDeIIIhxGOBAuD7hOfBB3/94gcJ3w+o5/5eIAIAAAVwWgQAVQ2ORaIQwEMAJiDg95G4nQL7mQVWI6GwRcfsZAcsKkJvxgxEjzFUgfHoSQ9Qq7KNwqHwuB13MA4a1q/DmBrHgPcmjiGoh//EwC5nGPEmS4RcfkVKOhJf+WOgoxJclFz3kgn//dBA+ya1GhurNn8zb//9NNutNuhz31f////9vt///z+IdAEAAAK4LQIAKobHItEIYCGAExBwe8jcToF9zIKrEdDYIuP2MgOWFSE34wYiR5iqQPj0JIeoVdlG4VD4XA67mAcNa1fhzA1jwHuTRxDUQ//iYBczjHiTJcIuPyKlHQkv/LHQUYkuSi57yQT//uggfZNajQ3Vmz+Zt//+mm3Wm3Q576v////+32///5/EOgAAADVghQAAAAA//uQZAUAB1WI0PZugAAAAAoQwAAAEk3nRd2qAAAAACiDgAAAAAAABCqEEQRLCgwpBGMlJkIz8jKhGvj4k6jzRnqasNKIeoh5gI7BJaC1A1AoNBjJgbyApVS4IDlZgDU5WUAxEKDNmmALHzZp0Fkz1FMTmGFl1FMEyodIavcCAUHDWrKAIA4aa2ooVFYAIAEAGAIAGBARULHABwANBcGRaCZmQCAZERZQVABQA+QAAADl/d8A9AKqAQAAAKACigHeBQAA');
-
 
 function resizeCanvas() {
     canvas.width = canvas.offsetWidth;
@@ -39,15 +37,14 @@ function resizeCanvas() {
     drawTree();
 }
 
-// Initial canvas setup
+
 resizeCanvas();
 
-// Update canvas size when window resizes
 window.addEventListener('resize', resizeCanvas);
 
 
 function drawTree() {
-    updateMaxTreeHeight(); // Ensure tree size is correct
+    updateMaxTreeHeight(); 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw trunk with gradient
@@ -62,8 +59,6 @@ function drawTree() {
     
     ctx.fillStyle = trunkGradient;
     ctx.fillRect(canvas.width / 2 - 10, canvas.height - treeHeight, 20, treeHeight);
-
-    // Draw leaves with multiple layers and gradients
     const leafGradient = ctx.createRadialGradient(
         canvas.width / 2,
         canvas.height - treeHeight,
@@ -76,38 +71,13 @@ function drawTree() {
     leafGradient.addColorStop(0.6, '#228B22');
     leafGradient.addColorStop(1, '#006400');
 
-    // Draw multiple leaf layers
-    for (let i = 0; i < 3; i++) {
-        ctx.fillStyle = leafGradient;
-        ctx.beginPath();
-        ctx.arc(
-            canvas.width / 2,
-            canvas.height - treeHeight + i * 10,
-            treeHeight / (1.8 + i * 0.2),
-            0,
-            Math.PI * 2
-        );
-        ctx.fill();
-    }
 
-    // Add some decorative leaves
-    for (let i = 0; i < 5; i++) {
-        const angle = (i / 5) * Math.PI * 2;
-        const x = canvas.width / 2 + Math.cos(angle) * (treeHeight / 3);
-        const y = canvas.height - treeHeight + Math.sin(angle) * (treeHeight / 3);
-        
-        ctx.fillStyle = '#90EE90';
-        ctx.beginPath();
-        ctx.ellipse(x, y, 10, 5, angle, 0, Math.PI * 2);
-        ctx.fill();
-    }
 
-    // Draw butterfly if present
+    
     if (butterflyX !== null && butterflyY !== null) {
         drawButterfly(butterflyX, butterflyY);
     }
 }
-
 
 let butterflyWing = 0;
 
@@ -139,15 +109,6 @@ function drawButterfly(x, y) {
     ctx.closePath();
     ctx.fill();
 
-    // Add wing details
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.lineWidth = 0.5;
-    ctx.beginPath();
-    ctx.moveTo(-5, -5);
-    ctx.quadraticCurveTo(-15, -15, -7, -12);
-    ctx.stroke();
-    ctx.restore();
-
     // Draw right wing
     ctx.save();
     ctx.rotate(wingFlap);
@@ -158,32 +119,13 @@ function drawButterfly(x, y) {
     ctx.closePath();
     ctx.fill();
 
-    // Add wing details
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.beginPath();
-    ctx.moveTo(5, -5);
-    ctx.quadraticCurveTo(15, -15, 7, -12);
-    ctx.stroke();
-    ctx.restore();
+
 
     // Draw body
     ctx.fillStyle = '#333';
     ctx.beginPath();
     ctx.ellipse(0, 0, 2, 8, 0, 0, Math.PI * 2);
     ctx.fill();
-
-    // Draw antennae
-    ctx.strokeStyle = '#333';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(0, -4);
-    ctx.quadraticCurveTo(-5, -12, -3, -15);
-    ctx.moveTo(0, -4);
-    ctx.quadraticCurveTo(5, -12, 3, -15);
-    ctx.stroke();
-
-    ctx.restore();
-}
 
 
 function updateTimer() {
@@ -197,7 +139,7 @@ function updateTimer() {
     }
 }
 
-// Start Timer and Tree Growth
+
 function startTimer() {
     if (interval !== null) return;
 
