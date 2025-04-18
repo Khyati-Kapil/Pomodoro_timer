@@ -142,8 +142,6 @@ function updateTimer() {
 
 function startTimer() {
     if (interval !== null) return;
-
-    newSessionEl.classList.add('hidden');
     growing = true;
     updateMaxTreeHeight();
     interval = setInterval(() => {
@@ -199,7 +197,7 @@ function resetTimer() {
     sessionCountEl.textContent = 'Sessions: 0';
     butterflyCountEl.textContent = 'Butterflies: 0';
     timerTypeEl.textContent = 'Work Time';
-    newSessionEl.classList.add('hidden');
+   
     updateMaxTreeHeight();
     updateTimer();
     drawTree();
