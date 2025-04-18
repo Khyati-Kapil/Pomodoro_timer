@@ -134,7 +134,7 @@ function updateTimer() {
     timerEl.innerHTML = `${minutes.toString()}:${seconds.toString().padStart(2, "0")}`;
 
     if (growing && timeLeft % 300 === 0 && timeLeft > 0) { 
-        treeHeight = Math.min(treeHeight + 10, maxTreeHeight);
+        
         drawTree();
     }
 }
